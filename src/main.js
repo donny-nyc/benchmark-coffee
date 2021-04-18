@@ -21,16 +21,15 @@ const store = new Vuex.Store({
 		[SET_LOADED_PRODUCTS]: ((state, products) => {
 			state.loading = false
 			state.products = products
-		})
+			console.log(state.products)
+		}),
 	},
 	getters: {},
 	actions: {
 		fetchProducts: (context, productGetter) => {
 			context.commit(SET_LOADING_PRODUCTS)
 			productGetter.fetchProducts().then((results) => {
-				console.log(results)
-				context.commit('setProducts', results)
-				context.commit(SET_LOADED_PRODUCTS)
+				context.commit(SET_LOADED_PRODUCTS, results)
 			})
 		},
 	},

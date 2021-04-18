@@ -1,15 +1,23 @@
 <template>
 	<div id='coffee'>
 		<h1>Coffee is Good for your Skin</h1>
+		<CoffeeCard v-for="product in products"
+			v-bind:name="product.name"
+			v-bind:description="product.description" 
+			v-bind:key="product.name"/>
 	</div>
 </template>
 
 <script>
 	import { mapActions } from 'vuex'	
 	import { productGetter } from './product_getter.js'
+	import CoffeeCard from './components/CoffeeCard'
 
 	export default {
 		name: 'coffee',
+		components: {
+			CoffeeCard,
+		},
 		computed: {
 			loadingProduct () {
 				return this.$store.state.loadingProduct
