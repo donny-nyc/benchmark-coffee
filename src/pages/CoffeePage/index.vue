@@ -64,6 +64,7 @@
 
 <style>
 	#coffee {
+		margin-top: 100px;
 		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
@@ -90,7 +91,7 @@
 	}
 
 	.hero-block {
-		margin-left: auto;
+		margin-left: 100px;
 		margin-right: auto;
 		margin-top: 120px;
 		color: #dddddd;
@@ -108,7 +109,7 @@
 	}
 
 	.video-transparency {
-		background-color: rgba(25, 35, 0, 0.5);
+		background-color: rgba(25, 15, 0, 0.5);
 		position: absolute;
 		width: 100%;
 		height: 100%;
@@ -136,11 +137,19 @@
 	}
 
 	.hero-block button {
-		width: 290px;
+		font-family: serif;
+		font-size: 1.5em;
+		width: 468px;
 		height: 50px;
-		background-color: #ddd;
-		border: none;
+		border: 3px solid #ddd;
+		color: #ddd;
+		background-color: rgba(0, 0, 0, 0);
 		text-decoration: none;
+	}
+
+	.hero-block button:hover {
+		background-color: #ddd;
+		color: black;
 	}
 
 </style>

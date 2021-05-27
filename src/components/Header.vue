@@ -17,9 +17,13 @@ export default {
 
 <style>
 	.header {
-		display: flex;
+		z-index: 2;
+		position: fixed;
+		top: 0;
 		width: 100%;
-		height: 200px;
+		background-color: white;
+		display: flex;
+		height: 100px;
 		align-items: center;
 		color: black;
 		display: flex;
@@ -28,12 +32,18 @@ export default {
 	}
 
 	.logo {
+		margin-left: 100px;
 		width: 200px;
 	}
 
 	.primary-nav {
+		font-size: 1.2em;
 		margin: 40px;
 		text-decoration: none;
-		color: black;
+		color: #999;
+	}
+
+	.primary-nav:hover {
+		color: #333;
 	}
 </style>
