@@ -1,6 +1,6 @@
 <template>
 
-	<div id='coffee'>
+	<div id='coffee' v-bind:class="{blur: shouldBlur}">
 		<div class='hero'>
 
 			<div class='hero-block'>
@@ -51,13 +51,16 @@
 			products () {
 				return this.$store.state.products
 			},
+			shouldBlur () {
+				return this.$store.state.shadow
+			},
 		},
 		mounted: function () {
 			this.fetchProducts(productGetter)
 		},
 		methods: {
 			...mapActions([
-				'fetchProducts'
+				'fetchProducts',
 			]),
 		},
 	}
@@ -70,6 +73,10 @@
 		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
+	}
+
+	.blur {
+		filter: blur(5px);
 	}
 
 	.hero {

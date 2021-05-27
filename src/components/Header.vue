@@ -1,5 +1,5 @@
 <template>
-	<div class='header'>
+	<div class='header' v-bind:class="{blur: shouldBlur}">
 		<a href="#"><img class='logo' src='/benchmark.png' /></a>
 		<a href="#" class='primary-nav'>Coffee</a>
 		<a href="#" class='primary-nav'>About</a>
@@ -11,6 +11,11 @@
 
 export default {
 	name: 'Header',
+	computed: {
+		shouldBlur () {
+			return this.$store.state.shadow	
+		}
+	}
 }
 
 </script>
@@ -29,6 +34,10 @@ export default {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+	}
+
+	.blur {
+		filter: blur(5px);
 	}
 
 	.logo {

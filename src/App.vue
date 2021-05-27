@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+		<Modal v-if="modals" />
 		<Header></Header>
 		<CoffeePage></CoffeePage>
 		<Footer></Footer>
@@ -10,14 +11,21 @@
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import CoffeePage from './pages/CoffeePage'
+import Modal from './components/Modal'
 
 export default {
   name: 'App',
   components: {
     CoffeePage,
 		Header,
-		Footer
-  }
+		Footer,
+		Modal
+  },
+	computed: {
+		modals () {
+			return this.$store.state.modals
+		}
+	}
 }
 </script>
 

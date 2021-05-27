@@ -1,5 +1,5 @@
 <template>
-	<div class='footer'>
+	<div class='footer' v-bind:class="{blur: shouldBlur}">
 		<div class='footer-column'>
 			<h2>Navigation</h2>
 			<a href="#">About</a>
@@ -21,6 +21,11 @@
 
 export default {
 	name: 'Footer',
+	computed: {
+		shouldBlur () {
+			return this.$store.state.shadow;
+		}
+	}
 }
 </script>
 
@@ -30,6 +35,10 @@ export default {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+	}
+
+	.blur {
+		filter: blur(5px);
 	}
 
 	.footer-column {
