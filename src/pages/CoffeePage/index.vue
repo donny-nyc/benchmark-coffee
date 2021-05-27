@@ -11,7 +11,7 @@
 					in double-blind studies. So yeah, pour
 					youself another hot one.
 				</p>
-				<button>Get Hot</button>
+				<button>Hot For You</button>
 			</div>
 <!--			<img class='hero-background' src='/coffee.png' /> -->
 			<div class='video-wrapper'>
@@ -24,9 +24,11 @@
 
 		<div id='products'>
 			<h1>Coffee is Good for your Skin</h1>
-			<CoffeeCard v-for="product in products"
+			<ContentCard v-for="(product, idx) in products"
 				v-bind:name="product.name"
 				v-bind:description="product.description" 
+				v-bind:imgSrc="product.imgSrc"
+				:id="idx"
 				v-bind:key="product.name"/>
 		</div>
 	</div>
@@ -35,12 +37,12 @@
 <script>
 	import { mapActions } from 'vuex'	
 	import { productGetter } from './product_getter.js'
-	import CoffeeCard from './components/CoffeeCard'
+	import ContentCard from './components/ContentCard'
 
 	export default {
 		name: 'coffee',
 		components: {
-			CoffeeCard,
+			ContentCard,
 		},
 		computed: {
 			loadingProduct () {
