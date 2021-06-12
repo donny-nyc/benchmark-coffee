@@ -1,32 +1,40 @@
 <template>
 	<div class='header' v-bind:class="{blur: shouldBlur}">
-		<a href="#"><img class='logo' src='/benchmark.png' /></a>
-		<a href="#" class='primary-nav'>Coffee</a>
-		<a href="#" class='primary-nav'>About</a>
-		<a href="#" class='primary-nav'>Cart</a>
+		<router-link to='/'><img class='logo' src='/benchmark.png' /></router-link>
+		<router-link to='/about' class='primary-nav'>About</router-link>
+		<router-link to='/coffee' class='primary-nav'>Coffee</router-link>
+		<span v-on:click='pushModal' class='primary-nav'>Cart</span>
 	</div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
 	name: 'Header',
 	computed: {
 		shouldBlur () {
 			return this.$store.state.shadow	
-		}
-	}
+		},
+	},
+	methods: {
+		...mapActions([
+			'pushModal',
+		]),
+	},
 }
 
 </script>
 
 <style>
 	.header {
+		/*background-color: #fff6f1;*/
+		background-color: #fff;
 		z-index: 2;
 		position: fixed;
 		top: 0;
+		left: 0;
 		width: 100%;
-		background-color: white;
 		display: flex;
 		height: 100px;
 		align-items: center;
@@ -53,6 +61,7 @@ export default {
 	}
 
 	.primary-nav:hover {
+		cursor: pointer;
 		color: #333;
 	}
 </style>

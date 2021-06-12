@@ -1,6 +1,6 @@
 <template>
 	<div class='modal'>
-		<div :class='hasShadow' />
+		<div v-on:click="hideModal" :class='hasShadow' />
 
 		<div class='modal-block'>
 			<p>Modal</p>
@@ -9,12 +9,19 @@
 </template>
 
 <script>
+	import { mapActions } from 'vuex'
+
 	export default {
 		name: 'Modal',
 		computed: {
 			hasShadow () {
 				return this.$store.state.shadow ? "shadow" : ""
 			}
+		},
+		methods: {
+			...mapActions([
+				'hideModal',
+			]),
 		}
 	}
 </script>
@@ -28,17 +35,20 @@
 		height: 100%;
 		background-color: rgba(0, 0, 0, 0.5);
 		z-index: 3;
+		transition: background-color 2s;
 	}
 
 	.modal-block {
+		background-color: #fff6f1;
 		width: 850px;
-		background-color: white;
 		position: fixed;
 		z-index: 5;
 		top: 50px;
 		left: 50%;
 		margin-left: -425px;
 		bottom: 50px;
+		border-radius: 10px;
+		border: 2px solid black;
 	}
 
 	@media only screen and (max-width: 850px) {

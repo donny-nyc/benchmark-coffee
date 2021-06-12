@@ -2,7 +2,8 @@
   <div id="app">
 		<Modal v-if="modals" />
 		<Header></Header>
-		<CoffeePage></CoffeePage>
+		<div id='router-margin' />
+		<router-view></router-view>
 		<Footer></Footer>
   </div>
 </template>
@@ -10,31 +11,34 @@
 <script>
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
-import CoffeePage from './pages/CoffeePage'
-import Modal from './components/Modal'
 
 export default {
   name: 'App',
   components: {
-    CoffeePage,
 		Header,
 		Footer,
-		Modal
   },
 	computed: {
 		modals () {
-			return this.$store.state.modals
+			return this.$store.state.modals.length > 0
 		}
 	}
 }
 </script>
 
 <style>
+body {
+	background-color: #fff6f1;
+}
+
 #app {
   /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
   font-family: serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+}
+
+#router-margin {
+	margin-top: 100px;
 }
 </style>

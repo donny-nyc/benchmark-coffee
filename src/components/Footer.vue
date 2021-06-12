@@ -8,6 +8,7 @@
 		<div class='footer-column'>
 			<h2>Locations</h2>
 			<span>1141 Broadway, NY, NY</span>
+			<p>©{{ currentYear }} Benchmark Coffee Roasters</p>
 		</div>
 		<div class='footer-column'>
 			<h2>Contact</h2>
@@ -24,6 +25,9 @@ export default {
 	computed: {
 		shouldBlur () {
 			return this.$store.state.shadow;
+		},
+		currentYear () {
+			return new Date().getFullYear()
 		}
 	}
 }
@@ -35,6 +39,9 @@ export default {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		max-width: 1200px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.blur {
@@ -44,10 +51,22 @@ export default {
 	.footer-column {
 		display: flex;
 		flex-direction: column;
+		margin-left: 75px;
+		margin-right: 75px;
 	}
 
 	.footer-column a {
 		text-decoration: none;
 		color: black;
 	}	
+
+	.footer-column h2 {
+		margin-bottom: 0;
+	}
+
+	@media only screen and (max-width: 1000px) {
+		.footer {
+			flex-direction: column;
+		}
+	}
 </style>

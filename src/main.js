@@ -1,21 +1,28 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VueRouter from 'vue-router'
 import App from './App.vue'
+import CoffeePage from './pages/CoffeePage'
+import AboutPage from './pages/AboutPage'
+import HomePage from './pages/HomePage'
+import TestPage from './pages/TestPage'
 
 import {
 	SET_LOADING_PRODUCTS,
 	SET_LOADED_PRODUCTS,
-	SET_SHOW_MODALS
+	SET_SHOW_MODALS,
+	SET_HIDE_MODALS,
 } from './mutation_constants.js'
 
 Vue.config.productionTip = false
 
 Vue.use(Vuex)
+Vue.use(VueRouter)
 
 const store = new Vuex.Store({
 	state: {
 		loading: false,
-		shadow: true,
+		shadow: false,
 		products: {},
 		modals: []
 	},
@@ -26,13 +33,21 @@ const store = new Vuex.Store({
 			state.products = products
 			console.log(state.products)
 		}),
+		[SET_HIDE_MODALS]: (state) => {
+			state.modals = []
+			state.shadow = false
+		},
 		[SET_SHOW_MODALS]: ((state, modal) => {
 
+			state.shadow = true
 			state.modals.push(modal)
 		})
 	},
 	getters: {},
 	actions: {
+		hideModal: (context) => {
+			context.commit(SET_HIDE_MODALS)
+		},
 		pushModal: (context, modal) => {
 			context.commit(SET_SHOW_MODALS, modal)
 		},
@@ -45,7 +60,19 @@ const store = new Vuex.Store({
 	},
 })
 
+const routes = [
+	{path: '/test', component: TestPage},
+	{path: '/about', component: AboutPage},
+	{path: '/coffee', component: CoffeePage},
+	{path: '', component: HomePage},
+]
+
+const router = new VueRouter({
+	routes
+})
+
 new Vue({
   render: h => h(App),
+	router: router,
 	store: store
 }).$mount('#app')
