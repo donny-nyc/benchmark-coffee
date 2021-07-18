@@ -3,12 +3,13 @@
 		<router-link to='/'><img class='logo' src='/benchmark.png' /></router-link>
 		<router-link to='/about' class='primary-nav'>About</router-link>
 		<router-link to='/coffee' class='primary-nav'>Coffee</router-link>
-		<span v-on:click='pushModal' class='primary-nav'>Cart</span>
+		<span v-on:click='pushCheckout' class='primary-nav'>Cart</span>
 	</div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import stripePublicKey from '../PublicKey.js'
 
 export default {
 	name: 'Header',
@@ -21,6 +22,9 @@ export default {
 		...mapActions([
 			'pushModal',
 		]),
+		pushCheckout: function() {
+			this.pushModal({modal: 'Checkout', properties: {pk: stripePublicKey}})
+		}
 	},
 }
 

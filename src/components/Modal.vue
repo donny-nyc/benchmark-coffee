@@ -4,19 +4,42 @@
 
 		<div class='modal-block'>
 			<p>Modal</p>
+			<!-- https://stackoverflow.com/a/43658979/15016489 -->
+			<component :is="topModal" v-bind="currentProperties"/>
 		</div>
 	</div>
 </template>
 
 <script>
 	import { mapActions } from 'vuex'
+	import Checkout from './Checkout.vue'
 
 	export default {
 		name: 'Modal',
+		data() {
+			return {
+			// Initialize as empty
+				topModal: {},
+				properties: {},
+			}
+		},
+		components: {
+			Checkout,
+		},
 		computed: {
 			hasShadow () {
 				return this.$store.state.shadow ? "shadow" : ""
+			},
+			currentProperties: function() {
+				return this.properties
 			}
+		},
+		created() {
+			const topModal = this.$store.state.modals[0]
+			this.topModal = topModal
+
+			const properties = this.$store.state.modalProperties[0]
+			this.properties = properties
 		},
 		methods: {
 			...mapActions([

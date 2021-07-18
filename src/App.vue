@@ -11,12 +11,14 @@
 <script>
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import Modal from './components/Modal.vue'
 
 export default {
   name: 'App',
   components: {
 		Header,
 		Footer,
+		Modal,
   },
 	computed: {
 		modals () {

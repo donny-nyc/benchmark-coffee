@@ -24,7 +24,8 @@ const store = new Vuex.Store({
 		loading: false,
 		shadow: false,
 		products: {},
-		modals: []
+		modals: [],
+		modalProperties: [],
 	},
 	mutations: {
 		[SET_LOADING_PRODUCTS]: (state => state.loading = true),
@@ -37,10 +38,11 @@ const store = new Vuex.Store({
 			state.modals = []
 			state.shadow = false
 		},
-		[SET_SHOW_MODALS]: ((state, modal) => {
+		[SET_SHOW_MODALS]: ((state, {modal, properties}) => {
 
 			state.shadow = true
 			state.modals.push(modal)
+			state.modalProperties.push(properties)
 		})
 	},
 	getters: {},
@@ -48,8 +50,8 @@ const store = new Vuex.Store({
 		hideModal: (context) => {
 			context.commit(SET_HIDE_MODALS)
 		},
-		pushModal: (context, modal) => {
-			context.commit(SET_SHOW_MODALS, modal)
+		pushModal: (context, {modal, properties}) => {
+			context.commit(SET_SHOW_MODALS, {modal, properties})
 		},
 		fetchProducts: (context, productGetter) => {
 			context.commit(SET_LOADING_PRODUCTS)
