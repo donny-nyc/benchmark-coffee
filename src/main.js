@@ -12,6 +12,7 @@ import {
 	SET_LOADED_PRODUCTS,
 	SET_SHOW_MODALS,
 	SET_HIDE_MODALS,
+	SET_PAYMENT_INTENT,
 } from './mutation_constants.js'
 
 Vue.config.productionTip = false
@@ -26,13 +27,13 @@ const store = new Vuex.Store({
 		products: {},
 		modals: [],
 		modalProperties: [],
+		intent: {},
 	},
 	mutations: {
 		[SET_LOADING_PRODUCTS]: (state => state.loading = true),
 		[SET_LOADED_PRODUCTS]: ((state, products) => {
 			state.loading = false
 			state.products = products
-			console.log(state.products)
 		}),
 		[SET_HIDE_MODALS]: (state) => {
 			state.modals = []
@@ -43,6 +44,10 @@ const store = new Vuex.Store({
 			state.shadow = true
 			state.modals.push(modal)
 			state.modalProperties.push(properties)
+		}),
+		[SET_PAYMENT_INTENT]: ((state, intent) => {
+			const clientSecret = intent.clientSecret
+			state.intent = clientSecret || ""
 		})
 	},
 	getters: {},
@@ -59,6 +64,19 @@ const store = new Vuex.Store({
 				context.commit(SET_LOADED_PRODUCTS, results)
 			})
 		},
+		fetchPaymentIntent: (context) => {
+			const requestOptions = {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ items: [] })
+			}
+
+			fetch("http://localhost:4242/create-payment-intent", requestOptions)
+			.then(response => response.json())
+			.then(data => {
+				context.commit(SET_PAYMENT_INTENT, data)
+			})
+		}
 	},
 })
 

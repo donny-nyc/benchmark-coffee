@@ -31,7 +31,7 @@
 				return this.$store.state.shadow ? "shadow" : ""
 			},
 			currentProperties: function() {
-				return this.properties
+				return this.$store.state.modalProperties[0]
 			}
 		},
 		created() {

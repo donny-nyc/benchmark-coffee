@@ -22,8 +22,6 @@
 				}
 			},
 			mirrored() {
-				console.log(this.id)
-				console.log(this.id % 2)
 				if (this.id % 2 == 0) return 'mirror';
 
 				return '';

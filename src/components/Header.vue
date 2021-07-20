@@ -9,7 +9,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import stripePublicKey from '../PublicKey.js'
+import stripeProperties from '../StripeProperties.js'
 
 export default {
 	name: 'Header',
@@ -23,8 +23,8 @@ export default {
 			'pushModal',
 		]),
 		pushCheckout: function() {
-			this.pushModal({modal: 'Checkout', properties: {pk: stripePublicKey}})
-		}
+			this.pushModal({modal: 'Checkout', properties: stripeProperties})
+		},
 	},
 }
 
