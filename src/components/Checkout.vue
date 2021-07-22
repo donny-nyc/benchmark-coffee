@@ -1,16 +1,18 @@
 <template>
 	<div>
 		<div>pk: {{ pk }}</div>
-		<div>sessionId: {{ sessionId }}</div>
 		<div>intent: {{ paymentIntent }}</div>
 		<StripeCheckout 
+			ref="checkoutRef"
+			mode="payment"
 			v-bind:pk="pk"
-			v-bind:sessionId="paymentIntent"
+			v-bind:sessionId="checkoutSessionId"
 			v-bind:lineItems="lineItems"
 			v-bind:successUrl="successUrl"
 			v-bind:cancelUrl="cancelUrl"
 			v-bind:clientReferenceId="clientReferenceId"
 		/>
+		<button @click="submit">Pay Now!</button>
 	</div>
 </template>
 
@@ -22,11 +24,19 @@ export default {
 	name: 'Checkout',
 	data() {
 		return {
-			lineItems: [],
+			lineItems: [
+				{
+					price: 'price_1JFQS4CKQFwp7OFZ0Ws7aUtm',
+					quantity: 1,
+				},
+			],
 			clientReferenceId: "",
 		}
 	},
 	computed: {
+		checkoutSessionId () {
+			return this.$store.state.sessionId
+		},
 		paymentIntent () {
 			return this.$store.state.intent
 		},
@@ -37,12 +47,17 @@ export default {
 		cancelUrl: String,
 	},
 	created: function() {
-		this.fetchPaymentIntent()
+		// this.fetchPaymentIntent()
+		this.fetchSessionId()
 	},
 	methods: {
 		...mapActions([
-		'fetchPaymentIntent',
-		])
+//		'fetchPaymentIntent',
+		'fetchSessionId',
+		]),
+		submit() {
+			this.$refs.checkoutRef.redirectToCheckout()
+		}
 	},
 	components: {
 		StripeCheckout,
