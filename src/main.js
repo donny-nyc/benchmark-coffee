@@ -54,6 +54,7 @@ const store = new Vuex.Store({
 		[SET_PAYMENT_INTENT]: ((state, intent) => {
 			const clientSecret = intent.clientSecret
 			state.intent = clientSecret || ""
+			console.log(`client secret ${state.intent}`)
 		})
 	},
 	getters: {},
@@ -91,6 +92,7 @@ const store = new Vuex.Store({
 				body: JSON.stringify({ items: [] })
 			}
 
+			console.log('do fetch payment intent')
 			fetch("http://localhost:4242/create-payment-intent", requestOptions)
 			.then(response => response.json())
 			.then(data => {

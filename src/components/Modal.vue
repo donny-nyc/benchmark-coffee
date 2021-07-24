@@ -71,7 +71,8 @@
 		margin-left: -425px;
 		bottom: 50px;
 		border-radius: 10px;
-		border: 2px solid black;
+		border: 2px solid #bfbfbf;
+		overflow-y: auto;
 	}
 
 	@media only screen and (max-width: 850px) {
@@ -79,8 +80,8 @@
 			width: unset;
 			margin-left: unset;
 			position: fixed;
-			left: 50px;
-			right: 50px;
+			left: 10px;
+			right: 10px;
 		}
 	}
 </style>
