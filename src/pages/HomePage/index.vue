@@ -23,14 +23,9 @@
 		</div>
 
 		<div id='products'>
-			<ContentCard v-for="(product, idx) in products"
-				v-bind:name="product.name"
-				v-bind:color="product.color"
-				v-bind:region="product.region"
-				v-bind:description="product.description" 
-				v-bind:imgSrc="product.imgSrc"
-				:id="idx"
-				v-bind:key="product.name"/>
+			<ContentCard v-for="product in products"
+				v-bind:product="product"
+				v-bind:key="product.id"/>
 		</div>
 	</div>
 </template>

@@ -3,7 +3,7 @@
 		<router-link to='/'><img class='logo' src='/benchmark.png' /></router-link>
 		<router-link to='/about' class='primary-nav'>About</router-link>
 		<router-link to='/coffee' class='primary-nav'>Coffee</router-link>
-		<span v-on:click='pushCheckout' class='primary-nav'>Cart</span>
+		<span v-on:click='pushCart' class='primary-nav'>Cart</span>
 	</div>
 </template>
 
@@ -22,8 +22,8 @@ export default {
 		...mapActions([
 			'pushModal',
 		]),
-		pushCheckout: function() {
-			this.pushModal({modal: 'Checkout', properties: stripeProperties})
+		pushCart: function() {
+			this.pushModal({modal: 'Cart', properties: stripeProperties})
 		},
 	},
 }

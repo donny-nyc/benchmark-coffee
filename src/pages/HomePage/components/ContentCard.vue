@@ -1,31 +1,39 @@
 <template>
 	<div class="content-card" :style="cssProps">
 		<div class='card-block' :class="mirrored">
-			<h1>{{ name }}</h1>
-			<h2 class='region'>{{ region }}</h2>
-			<p class='description'>{{ description }}</p>
+			<h1>{{ product.name }}</h1>
+			<h2 class='region'>{{ product.region }}</h2>
+			<p class='description'>{{ product.description }}</p>
+			<button v-on:click="addToCart(product)">Add To Cart</button>
 		</div>
 		<div class='card-image'>
-			<img :src="imgSrc" />
+			<img :src="product.imgSrc" />
 		</div>
 	</div>
 </template>
 
 <script>
+	import { mapActions } from 'vuex'
+
 	export default {
 		name: 'ContentCard',
-		props: [ 'id', 'color', 'name', 'region', 'description', 'imgSrc'],
+		props: [ 'product' ],
 		computed: {
 			cssProps() {
 				return {
-					'--background-color': this.color,
+					'--background-color': this.product.color,
 				}
 			},
 			mirrored() {
-				if (this.id % 2 == 0) return 'mirror';
+				if (this.product.id % 2 == 0) return 'mirror';
 
 				return '';
 			}
+		},
+		methods: {
+			...mapActions([
+				'addToCart',
+			])
 		}
 	}
 </script>

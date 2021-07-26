@@ -3,7 +3,6 @@
 		<div v-on:click="hideModal" :class='hasShadow' />
 
 		<div class='modal-block'>
-			<p>Modal</p>
 			<!-- https://stackoverflow.com/a/43658979/15016489 -->
 			<component :is="topModal" v-bind="currentProperties"/>
 		</div>
@@ -13,6 +12,7 @@
 <script>
 	import { mapActions } from 'vuex'
 	import Checkout from './Checkout.vue'
+	import Cart from './Cart.vue'
 
 	export default {
 		name: 'Modal',
@@ -25,6 +25,7 @@
 		},
 		components: {
 			Checkout,
+			Cart,
 		},
 		computed: {
 			hasShadow () {
@@ -70,9 +71,10 @@
 		left: 50%;
 		margin-left: -425px;
 		bottom: 50px;
-		border-radius: 10px;
+		border-radius: 5px;
 		border: 2px solid #bfbfbf;
 		overflow-y: auto;
+		padding: 25px;
 	}
 
 	@media only screen and (max-width: 850px) {

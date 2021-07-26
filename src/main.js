@@ -14,6 +14,7 @@ import {
 	SET_HIDE_MODALS,
 	SET_PAYMENT_INTENT,
 	SET_SESSION_ID,
+	ADD_TO_CART,
 } from './mutation_constants.js'
 
 Vue.config.productionTip = false
@@ -26,6 +27,7 @@ const store = new Vuex.Store({
 		loading: false,
 		shadow: false,
 		products: {},
+		cart: new Map(),
 		modals: [],
 		modalProperties: [],
 		intent: "",
@@ -55,7 +57,27 @@ const store = new Vuex.Store({
 			const clientSecret = intent.clientSecret
 			state.intent = clientSecret || ""
 			console.log(`client secret ${state.intent}`)
-		})
+		}),
+		[ADD_TO_CART]: ((state, product) => {
+			if (!product) {
+				console.error("Product cannot be null")
+				return
+			} else if (!product.id < 0 || product.id === undefined) {
+				console.error("Product.id cannot be null")
+			} else {
+				console.log(`${product.name} ${product.description}`)
+			}
+
+			let exists = state.cart.get(product.id)
+			if(exists) {
+				product.count = exists.count + 1
+			} else {
+				product.count = 1
+			}
+
+			state.cart.set(product.id, product)
+			console.log(state.cart)
+		}),
 	},
 	getters: {},
 	actions: {
@@ -84,6 +106,9 @@ const store = new Vuex.Store({
 				context.commit(SET_SESSION_ID, data)
 			})
 
+		},
+		addToCart: (context, product) => {
+			context.commit(ADD_TO_CART, product)
 		},
 		fetchPaymentIntent: (context) => {
 			const requestOptions = {

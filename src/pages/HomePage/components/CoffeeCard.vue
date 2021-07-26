@@ -1,3 +1,4 @@
+<!--
 <template>
 	<div>
 		<h3>Name: {{ name }}</h3>
@@ -11,9 +12,12 @@
 	export default {
 		name: 'CoffeeCard',
 		props: [ 'id', 'name', 'description' ],
+		methods: {
+		}
 	}
 </script>
 
 <style>
 
 </style>
+-->
