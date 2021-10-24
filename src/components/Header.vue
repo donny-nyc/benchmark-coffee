@@ -3,27 +3,17 @@
 		<router-link to='/'><img class='logo' src='/benchmark.png' /></router-link>
 		<router-link to='/about' class='primary-nav'>About</router-link>
 		<router-link to='/coffee' class='primary-nav'>Coffee</router-link>
-		<span v-on:click='pushCart' class='primary-nav'>Cart</span>
+		<router-link to='/checkout' class='primary-nav'>Cart</router-link>
 	</div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import stripeProperties from '../StripeProperties.js'
 
 export default {
 	name: 'Header',
 	computed: {
 		shouldBlur () {
 			return this.$store.state.shadow	
-		},
-	},
-	methods: {
-		...mapActions([
-			'pushModal',
-		]),
-		pushCart: function() {
-			this.pushModal({modal: 'Cart', properties: stripeProperties})
 		},
 	},
 }
@@ -33,7 +23,7 @@ export default {
 <style>
 	.header {
 		/*background-color: #fff6f1;*/
-		background-color: #fff;
+		background-color: #ffd65a;
 		z-index: 2;
 		position: fixed;
 		top: 0;
@@ -61,7 +51,7 @@ export default {
 		font-size: 1.2em;
 		margin: 40px;
 		text-decoration: none;
-		color: #999;
+		color: ##7b5203;
 	}
 
 	.primary-nav:hover {

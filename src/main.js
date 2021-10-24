@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import CoffeePage from './pages/CoffeePage'
+import CheckoutPage from './pages/CheckoutPage'
+import SuccessPage from './pages/SuccessPage'
 import AboutPage from './pages/AboutPage'
 import HomePage from './pages/HomePage'
 import TestPage from './pages/TestPage'
@@ -131,10 +133,13 @@ const routes = [
 	{path: '/test', component: TestPage},
 	{path: '/about', component: AboutPage},
 	{path: '/coffee', component: CoffeePage},
+	{path: '/success', component: SuccessPage},
+	{path: '/checkout', component: CheckoutPage},
 	{path: '', component: HomePage},
 ]
 
 const router = new VueRouter({
+	mode: 'history',
 	routes
 })
 

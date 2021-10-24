@@ -11,8 +11,6 @@
 
 <script>
 	import { mapActions } from 'vuex'
-	import Checkout from './Checkout.vue'
-	import Cart from './Cart.vue'
 
 	export default {
 		name: 'Modal',
@@ -22,10 +20,6 @@
 				topModal: {},
 				properties: {},
 			}
-		},
-		components: {
-			Checkout,
-			Cart,
 		},
 		computed: {
 			hasShadow () {
