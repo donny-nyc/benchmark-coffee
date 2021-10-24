@@ -72,16 +72,23 @@ const store = new Vuex.Store({
 
 			let exists = state.cart.get(product.id)
 			if(exists) {
-				product.count = exists.count + 1
+				product.count = exists + 1
 			} else {
 				product.count = 1
 			}
 
-			state.cart.set(product.id, product)
+			state.cart.set(product.id, product.count)
 			console.log(state.cart)
 		}),
 	},
-	getters: {},
+	getters: {
+		getIntent: state => () => {
+			return state.intent
+		},
+		getCart: state => () => {
+			return state.cart
+		}
+	},
 	actions: {
 		hideModal: (context) => {
 			context.commit(SET_HIDE_MODALS)
@@ -112,19 +119,31 @@ const store = new Vuex.Store({
 		addToCart: (context, product) => {
 			context.commit(ADD_TO_CART, product)
 		},
-		fetchPaymentIntent: (context) => {
-			const requestOptions = {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ items: [] })
-			}
+		fetchPaymentIntent: ({commit, state}) => {
+			if(!state.intent) {
+				let body = []
 
-			console.log('do fetch payment intent')
-			fetch("http://localhost:4242/create-payment-intent", requestOptions)
-			.then(response => response.json())
-			.then(data => {
-				context.commit(SET_PAYMENT_INTENT, data)
-			})
+				state.cart.forEach((value, key) => {
+					body.push({
+						id: key,
+						count: value,
+					})
+				})
+
+				const requestOptions = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ items: body })
+				}
+
+				console.log(requestOptions)
+
+				fetch("http://localhost:4242/payment-intent/create", requestOptions)
+				.then(response => response.json())
+				.then(data => {
+					commit(SET_PAYMENT_INTENT, data)
+				})
+			}
 		}
 	},
 })

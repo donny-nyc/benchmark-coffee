@@ -113,12 +113,6 @@
 
 	export default {
 		name: "Cart",
-		props: {
-			pk: {
-				type: String,
-				required: true
-			},
-		},
 		components: {
 			Product,
 		},
@@ -133,7 +127,7 @@
 				return this.$store.state.cart
 			},
 			intent: function() {
-				return this.$store.state.intent.substring(0, 30) + "..."
+				return this.$store.state.intent
 			},
 			empty: function() {
 				return this.$store.state.cart.size == 0
@@ -168,6 +162,7 @@
 				const cardElement = this.elements.getElement("card")
 
 				try {
+				/*
 					const response = await fetch("http://localhost:4242/create-payment-intent", {
 						method: "POST",
 						headers: {
@@ -179,6 +174,9 @@
 
 					const { clientSecret } = await response.json()
 					console.log("secret", clientSecret)
+					*/
+
+					const clientSecret = this.intent
 
 					const paymentMethodReq = await this.stripe.createPaymentMethod({
 						type: "card",
@@ -200,6 +198,10 @@
 			}
 		},
 		async mounted() {
+			this.fetchPaymentIntent()
+
+			console.log('intent', this.intent)
+
 			const ELEMENT_TYPE = "card"
 
 			this.stripe = await loadStripe(stripeProperties.pk)
