@@ -22,9 +22,8 @@
 			<form v-on:submit.prevent="handleSubmit">
 				<fieldset class="fields">
 					<div class="field">
-						<label for="name_field">Name</label>
 						<input
-							placeholder="Johan"
+							placeholder="Name"
 							type="text"
 							name="name"
 							id="name_field"
@@ -32,66 +31,51 @@
 						/>
 					</div>
 					<div class="field">
-						<label for="email_field">Email</label>
 						<input
-							placeholder="johan@benchmark.com"
+							placeholder="Email"
 							type="email"
 							name="email"
 							id="email_field"
 							class="input"
 						/>
 					</div>
-					<div>
-						<label for="address_field">Address</label>
+					<div class="field">
 						<input
-							placeholder="408 3rd Ave"
+							placeholder="Street Address"
 							type="text"
 							name="address"
 							id="address_field"
 							class="input"
 						/>
 					</div>
-					<div>
-						<label for="address_field">Apartment/Floor</label>
+					<div class="field">
 						<input
+							placeholder="Apt/Floor"
 							type="text"
 							name="address2"
 							id="address2_field"
 							class="input"
 						/>
 					</div>
-					<div>
-						<label for="city_field">City</label>
+					<div class="field">
 						<input
-							placeholder="Brooklyn"
+							placeholder="City"
 							type="text"
 							name="city"
 							id="city_field"
 							class="input"
 						/>
 					</div>
-					<div>
-						<label for="state_field">State</label>
+					<div class="field">
 						<input
-							placeholder="New York"
+							placeholder="State"
 							type="text"
 							name="state"
 							id="state_field"
 							class="input"
 						/>
 					</div>
-					<div>
-						<label for="zip_field">Zip Code</label>
-						<input
-							placeholder="11215"
-							type="text"
-							name="zip"
-							id="zip_id"
-							class="input"
-						/>
-					</div>
-					<div>
-						<label for="card_field">Credit Card</label>
+					<div class="field">
 						<div id="stripe-element-mount-point" class="input" />
 					</div>
 				</fieldset>
@@ -207,7 +191,29 @@
 			this.stripe = await loadStripe(stripeProperties.pk)
 
 			this.elements = this.stripe.elements()
-			const element = this.elements.create(ELEMENT_TYPE, "")
+			const element = this.elements.create(ELEMENT_TYPE, {
+				style: {
+					base: {
+						lineHeight: '2em',
+						iconColor: '#000',
+						color: '#000',
+						fontWeight: '500',
+						fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+						fontSize: '16px',
+						fontSmoothing: 'antialiased',
+						':-webkit-autofill': {
+							color: '#000',
+						},
+						'::placeholder': {
+							color: '#000',
+						},
+					},
+					invalid: {
+						iconColor: '#F00',
+						color: '#F00',
+					},
+				},
+			})
 			element.mount("#stripe-element-mount-point")
 		},
 		created() {
@@ -220,5 +226,20 @@
 	.checkout-div {
 		float: left;
 		width: 50%;
+	}
+
+	.field {
+		background-color: #FFF;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		gap: 50px;
+	}
+
+	.field input {
+		height: 2em;
+		border: 1px solid #999;
+		width: 100%;	
+		font-size: 1.5em;
 	}
 </style>

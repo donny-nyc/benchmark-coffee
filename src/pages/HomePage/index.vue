@@ -2,6 +2,16 @@
 
 	<div id='coffee' v-bind:class="{blur: shouldBlur}">
 		<div class='hero'>
+			<div class='hero-block'>
+				<h1>Drink Better Coffee</h1>
+			</div>
+			<div class='hero-block'>
+				<img src="coffeecup.png" />
+			</div>
+		</div>
+	</div>
+<!--
+		<div class='hero'>
 
 			<div class='hero-block'>
 				<h1>You should drink more coffee</h1>
@@ -13,7 +23,6 @@
 				</p>
 				<button>Hot For You</button>
 			</div>
-<!--			<img class='hero-background' src='/coffee.png' /> -->
 			<div class='video-wrapper'>
 				<div class='video-transparency' />
 				<video class='hero-background' autoplay muted loop>
@@ -21,24 +30,27 @@
 				</video>
 			</div>
 		</div>
+		-->
 
+<!--
 		<div id='products'>
 			<ContentCard v-for="product in products"
 				v-bind:product="product"
 				v-bind:key="product.id"/>
 		</div>
 	</div>
+	-->
 </template>
 
 <script>
 	import { mapActions } from 'vuex'	
 	import { productGetter } from './product_getter.js'
-	import ContentCard from './components/ContentCard'
+//	import ContentCard from './components/ContentCard'
 
 	export default {
 		name: 'HomePage',
 		components: {
-			ContentCard,
+			//ContentCard,
 		},
 		computed: {
 			loadingProduct () {
@@ -102,7 +114,7 @@
 		color: #dddddd;
 		text-align: left;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		position: absolute;
 		line-height: 2;
 		z-index: 1;

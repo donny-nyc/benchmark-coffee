@@ -23,7 +23,7 @@ export default {
 <style>
 	.header {
 		/*background-color: #fff6f1;*/
-		background-color: #ffd65a;
+		background-color: #5a5dff;
 		z-index: 2;
 		position: fixed;
 		top: 0;
