@@ -23,7 +23,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 	#benchmark {
 		background-image: url("/coffee_mark.png");
 		background-size: 100px;
@@ -59,6 +59,7 @@ export default {
 
 	.primary-nav {
 		font-size: 1.2em;
+		font-weight: bold;
 		margin: 40px;
 		text-decoration: none;
 		color: #DDD;

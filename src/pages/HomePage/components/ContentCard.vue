@@ -1,40 +1,51 @@
 <template>
 	<div class="content-card" :style="cssProps">
-	<!--
 		<div class='card-image'>
 			<img :src="product.imgSrc" />
 		</div>
-		-->
-		<div class='card-block'
-			:class="mirrored"
-			:style="{ backgroundImage: `url(${product.imgSrc})` }"
-		>
-			<h1>{{ product.name }}</h1>
-			<h2 class='region'>{{ product.region }}</h2>
-			<h2>${{product.price}}</h2>
+		<div class='card-block'>
+			<h1>
+				<span>
+					{{ product.name }}
+				</span>
+				<span>
+					- {{ product.region }}
+				</span>
+				<span>
+					- ${{ product.price }}
+				</span>
+			</h1>
 		</div>
 		<p class='description'>{{ product.description }}</p> 
-		<button v-on:click="addToCart(product)">Add To Cart</button>
+		<BenchmarkButton 
+			v-on:click="addToCart(product)"
+			text="Add To Cart" 
+			color="#96fc9c"
+		/>
+		<br />
+		<BenchmarkButton
+			href="/checkout"
+			v-on:click="addToCart(product)"
+			text="Buy Now"
+			color="#96fcf2"
+		/>
 	</div>
 </template>
 
 <script>
 	import { mapActions } from 'vuex'
+	import BenchmarkButton from '../../../components/BenchmarkButton.vue'
 
 	export default {
 		name: 'ContentCard',
 		props: [ 'product' ],
+		components: { BenchmarkButton },
 		computed: {
 			cssProps() {
 				return {
-					'--background-color': this.product.color,
+		/*			'--background-color': this.product.color, */
 				}
 			},
-			mirrored() {
-				if (this.product.id % 2 == 0) return 'mirror';
-
-				return '';
-			}
 		},
 		methods: {
 			...mapActions([
@@ -46,12 +57,19 @@
 
 <style>
 	.content-card {
-		background-color: var(--background-color);
-		height: 700px;
+		border-radius: 10px;
+		background: linear-gradient(0deg, #000000 0%, #963c06 200%);
+		height: 900px;
 		width: 500px;
 		color: #333;
 		font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 		margin-bottom: 30px;
+		padding: 30px;
+	}
+
+	BenchmarkButton {
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.content-card button {
@@ -67,10 +85,15 @@
 		font-size: 2em;
 	}
 
-	.content-card h1 {
+	.content-card h1 span:first-child {
 		color: #c85933;
 		font-weight: normal;
 		margin-bottom: 5px;
+	}
+
+	.content-card h1 span {
+		color: #DDD;
+		font-weight: normal;
 	}
 
 	.content-card h2 {
@@ -82,17 +105,15 @@
 	.content-card .description {
 		font-size: 1.2em;
 		line-height: 2;
-		background-color: #DDD;
-		margin-left: 10px;
-		margin-right: 10px;
+		color: #DDD;
+		border-bottom: 2px solid #DDD;
+		padding-bottom: 20px;
+		margin-bottom: 70px;
 	}
 
 	.card-block {
 		text-align: justify;
 		width: 100%;
-		height: 300px;
-		background-position: center center;
-		background-repeat: no-repeat;
 	}
 
 	.mirror {
@@ -102,8 +123,6 @@
 	.card-image {
 		width: 100%;
 		overflow: hidden;
-		display: block;
-		float: left;
 	}
 
 	.card-image img {

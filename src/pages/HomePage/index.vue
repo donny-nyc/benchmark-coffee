@@ -10,7 +10,7 @@
 				<p>Stop it.</p>
 				<br />
 				<br />
-				<a href="/coffee">Stop It Now</a>
+				<BenchmarkButton href="/coffee" text="Stop It Now" />
 			</div>
 			<div class='hero-block'>
 				<img width="500px" src="coffeecup.png" />
@@ -25,15 +25,17 @@
 	</div>
 </template>
 
-<script>
+<script scoped>
 	import { mapActions } from 'vuex'	
 	import { productGetter } from './product_getter.js'
 	import ContentCard from './components/ContentCard'
+	import BenchmarkButton from '../../components/BenchmarkButton'
 
 	export default {
 		name: 'HomePage',
 		components: {
 			ContentCard,
+			BenchmarkButton,
 		},
 		computed: {
 			loadingProduct () {
@@ -73,27 +75,6 @@
 
 	.hero-block p {
 		font-size: 1.5em;
-	}
-
-	.hero-block a {
-		background: none;
-		border: 2px solid #DDD;
-		border-radius: 10px;
-		color: #DDD;
-		font-size: 2em;
-		padding: 30px;
-		transition: 0.3s;
-		text-decoration: none;
-	}
-
-	.hero-block a:hover {
-		background-color: #DDD;
-		color: #000;
-		cursor: pointer;
-	}
-
-	.hero-block a:active {
-		background-color: white;
 	}
 
 	.hero {

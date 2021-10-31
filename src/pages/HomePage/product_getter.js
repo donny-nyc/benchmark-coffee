@@ -9,7 +9,7 @@ export var productGetter = {
 					description: "Royal Salute’s first 25-year-old expression, created as a tribute to the Crown Jewels, The Treasured Blend is a rare gem, waiting to be discovered.", 
 					price: "20",
 					color: "#35b3ff",
-					imgSrc: "/coffee1.jpg"
+					imgSrc: "/daily.svg"
 				},
 				{
 					id: "prod_KT9ywZLFvWj62Y",
