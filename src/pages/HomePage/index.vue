@@ -17,10 +17,13 @@
 			</div>
 		</div>
 		<div id='products'>
-			<ContentCard v-for="product in products"
-				v-bind:product="product"
-				v-bind:key="product.id"
-			/>
+			<h1>Fresh Roasts Available Now</h1>
+			<div id='cards'>
+				<ContentCard v-for="product in products"
+					v-bind:product="product"
+					v-bind:key="product.id"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -62,6 +65,16 @@
 
 <style>
 	#products {
+		border-top: 2px solid #DDD;
+		padding-top: 30px;
+	}
+
+	#products h1 {
+		color: #DDD;
+		font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+	}
+
+	#cards {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-evenly;

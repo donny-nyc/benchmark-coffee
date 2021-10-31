@@ -67,7 +67,7 @@ export default {
 
 	.primary-nav:hover {
 		cursor: pointer;
-		color: #aa4c13;
+		color: #ffb43e;
 	}
 
 	#benchmark {

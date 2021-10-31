@@ -57,8 +57,9 @@
 
 <style>
 	.content-card {
-		border-radius: 10px;
-		background: linear-gradient(0deg, #000000 0%, #963c06 200%);
+		border-radius: 5px;
+		box-shadow: 5px 5px 2px 2px black;
+		background: linear-gradient(0deg, #000000 0%, #c67c00 150%);
 		height: 900px;
 		width: 500px;
 		color: #333;
