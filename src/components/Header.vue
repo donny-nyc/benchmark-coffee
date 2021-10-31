@@ -6,6 +6,9 @@
 			<router-link to='/about' class='primary-nav'>About</router-link>
 			<router-link to='/coffee' class='primary-nav'>Coffee</router-link>
 			<router-link to='/checkout' class='primary-nav'>Cart</router-link>
+			<div class="hamburger">
+				<button>=</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -70,6 +73,17 @@ export default {
 		color: #ffb43e;
 	}
 
-	#benchmark {
+	.hamburger {
+		display: none;
+	}
+
+	@media only screen and (max-width: 400px) {
+		.primary-nav {
+			display: none;
+		}
+
+		.hamburger {
+			display: block;
+		}
 	}
 </style>

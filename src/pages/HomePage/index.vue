@@ -12,7 +12,7 @@
 				<br />
 				<BenchmarkButton href="/coffee" text="Stop It Now" />
 			</div>
-			<div class='hero-block'>
+			<div class='hero-block' id='coffeecup'>
 				<img width="500px" src="coffeecup.png" />
 			</div>
 		</div>
@@ -94,5 +94,21 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-evenly;
+	}
+
+
+	@media only screen and (max-width: 400px) {
+		.hero {
+			max-width: 400px;
+			flex-direction: column;
+		}
+
+		#coffeecup {
+			order: -1;
+		}
+
+		img {
+			max-width: 300px;
+		}
 	}
 </style>
