@@ -6,14 +6,14 @@
 			<router-link to='/about' class='primary-nav'>About</router-link>
 			<router-link to='/coffee' class='primary-nav'>Coffee</router-link>
 			<router-link to='/checkout' class='primary-nav'>Cart</router-link>
-			<div class="hamburger">
-				<button>=</button>
-			</div>
+			<HamburgerMenu />
 		</div>
 	</div>
 </template>
 
 <script>
+
+import HamburgerMenu from './HamburgerMenu'
 
 export default {
 	name: 'Header',
@@ -22,6 +22,9 @@ export default {
 			return this.$store.state.shadow	
 		},
 	},
+	components: {
+		HamburgerMenu
+	}
 }
 
 </script>

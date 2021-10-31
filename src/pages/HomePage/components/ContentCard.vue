@@ -143,7 +143,6 @@
 		}
 
 		.card-block {
-			height: 300px;
 			width: 100%;
 			margin: 20px;
 			order: 2;
