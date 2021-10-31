@@ -76,17 +76,10 @@ export default {
 		color: #ffb43e;
 	}
 
-	.hamburger {
-		display: none;
-	}
 
 	@media only screen and (max-width: 400px) {
 		.primary-nav {
 			display: none;
-		}
-
-		.hamburger {
-			display: block;
 		}
 	}
 </style>

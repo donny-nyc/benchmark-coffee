@@ -65,4 +65,15 @@
 	#hamburger-button:active {
 		background-color: white;
 	}
+
+	#hamburger-menu {
+		display: none;
+	}
+
+	@media only screen and (max-width: 400px) {
+		#hamburger-menu {
+			display: block;
+		}
+	}
+
 </style>
