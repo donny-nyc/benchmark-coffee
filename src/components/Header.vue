@@ -1,9 +1,12 @@
 <template>
 	<div class='header' v-bind:class="{blur: shouldBlur}">
-		<router-link to='/'><img class='logo' src='/benchmark.png' /></router-link>
-		<router-link to='/about' class='primary-nav'>About</router-link>
-		<router-link to='/coffee' class='primary-nav'>Coffee</router-link>
-		<router-link to='/checkout' class='primary-nav'>Cart</router-link>
+		<div id='benchmark'>
+<!--		<router-link to='/'><img class='logo' src='/benchmark.png' /></router-link> -->
+			<router-link to='/' id='benchmark' class='primary-nav'>BENCHMARK</router-link>
+			<router-link to='/about' class='primary-nav'>About</router-link>
+			<router-link to='/coffee' class='primary-nav'>Coffee</router-link>
+			<router-link to='/checkout' class='primary-nav'>Cart</router-link>
+		</div>
 	</div>
 </template>
 
@@ -21,21 +24,28 @@ export default {
 </script>
 
 <style>
+	#benchmark {
+		background-image: url("/coffee_mark.png");
+		background-size: 100px;
+		background-repeat: no-repeat;
+		background-position: 90px;
+
+		display: flex;
+		align-items: center;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
 	.header {
 		/*background-color: #fff6f1;*/
-		background-color: #5a5dff;
+		background: linear-gradient(-90deg, #5a5dff 0%, #0a0d5f 100%);
+		font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 		z-index: 2;
 		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
-		display: flex;
-		height: 100px;
-		align-items: center;
-		color: black;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
 	}
 
 	.blur {
@@ -51,11 +61,14 @@ export default {
 		font-size: 1.2em;
 		margin: 40px;
 		text-decoration: none;
-		color: ##7b5203;
+		color: #DDD;
 	}
 
 	.primary-nav:hover {
 		cursor: pointer;
-		color: #333;
+		color: #aa4c13;
+	}
+
+	#benchmark {
 	}
 </style>

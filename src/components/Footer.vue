@@ -35,7 +35,7 @@ export default {
 
 <style>
 	.footer {
-		border-top: 2px solid black;
+		border-top: 2px solid #DDD;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -53,11 +53,13 @@ export default {
 		flex-direction: column;
 		margin-left: 75px;
 		margin-right: 75px;
+		color: #DDD;
+		font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 	}
 
 	.footer-column a {
 		text-decoration: none;
-		color: black;
+		color: #DDD;
 	}	
 
 	.footer-column h2 {

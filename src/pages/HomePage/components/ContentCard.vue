@@ -1,14 +1,20 @@
 <template>
 	<div class="content-card" :style="cssProps">
-		<div class='card-block' :class="mirrored">
-			<h1>{{ product.name }}</h1>
-			<h2 class='region'>{{ product.region }}</h2>
-			<p class='description'>{{ product.description }}</p>
-			<button v-on:click="addToCart(product)">Add To Cart</button>
-		</div>
+	<!--
 		<div class='card-image'>
 			<img :src="product.imgSrc" />
 		</div>
+		-->
+		<div class='card-block'
+			:class="mirrored"
+			:style="{ backgroundImage: `url(${product.imgSrc})` }"
+		>
+			<h1>{{ product.name }}</h1>
+			<h2 class='region'>{{ product.region }}</h2>
+			<h2>${{product.price}}</h2>
+		</div>
+		<p class='description'>{{ product.description }}</p> 
+		<button v-on:click="addToCart(product)">Add To Cart</button>
 	</div>
 </template>
 
@@ -41,14 +47,24 @@
 <style>
 	.content-card {
 		background-color: var(--background-color);
-		display: flex;
-		flex-direction: row;
-		max-width: 1050px;
+		height: 700px;
+		width: 500px;
+		color: #333;
+		font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+		margin-bottom: 30px;
+	}
+
+	.content-card button {
+		background: none;
+		border: 2px solid #DDD;
+		border-radius: 10px;
+		color: #DDD;
+		width: 300px;
+		display: block;
 		margin-left: auto;
 		margin-right: auto;
-		margin-bottom: 50px;
-		color: #333;
-		height: 450px;
+		height: 100px;
+		font-size: 2em;
 	}
 
 	.content-card h1 {
@@ -60,38 +76,38 @@
 	.content-card h2 {
 		margin-top: 5px;
 		font-weight: normal;
-		color: #333;
+		color: #DDD;
 	}
 
 	.content-card .description {
 		font-size: 1.2em;
 		line-height: 2;
+		background-color: #DDD;
+		margin-left: 10px;
+		margin-right: 10px;
 	}
 
 	.card-block {
 		text-align: justify;
-		margin-right: 100px;
-		margin-left: 50px;
-		margin-top: auto;
-		margin-bottom: auto;
-		min-width: 200px;
-		background-color: white;
-		padding: 50px;
-	}
-
-	.card-image {
 		width: 100%;
-		margin: 0 25px 0 25px;
+		height: 300px;
+		background-position: center center;
+		background-repeat: no-repeat;
 	}
 
 	.mirror {
 		order: 2;
 	}
 
-	.content-card img {
-		max-width: 100%;
-		height: 100%;
-		object-fit: cover;
+	.card-image {
+		width: 100%;
+		overflow: hidden;
+		display: block;
+		float: left;
+	}
+
+	.card-image img {
+		height: 300px;
 	}
 
 	@media only screen and (max-width: 1000px) {
@@ -107,6 +123,8 @@
 		}
 
 		.card-block {
+			height: 300px;
+			width: 100%;
 			margin: 20px;
 			order: 2;
 		}

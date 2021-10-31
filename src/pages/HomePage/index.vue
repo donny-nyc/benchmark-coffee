@@ -1,56 +1,39 @@
 <template>
-
 	<div id='coffee' v-bind:class="{blur: shouldBlur}">
 		<div class='hero'>
 			<div class='hero-block'>
 				<h1>Drink Better Coffee</h1>
+				<p>You there. Drinking the same sad coffee.</p>
+				<p>You could be doing so much more for yourself.</p>
+				<p>But instead you just sit there, drinking
+				sad coffee.</p>
+				<p>Stop it.</p>
+				<br />
+				<br />
+				<a href="/coffee">Stop It Now</a>
 			</div>
 			<div class='hero-block'>
-				<img src="coffeecup.png" />
+				<img width="500px" src="coffeecup.png" />
 			</div>
 		</div>
-	</div>
-<!--
-		<div class='hero'>
-
-			<div class='hero-block'>
-				<h1>You should drink more coffee</h1>
-				<p>
-					Science has proven that people who drink
-					coffee appear sexier and more confident
-					in double-blind studies. So yeah, pour
-					youself another hot one.
-				</p>
-				<button>Hot For You</button>
-			</div>
-			<div class='video-wrapper'>
-				<div class='video-transparency' />
-				<video class='hero-background' autoplay muted loop>
-					<source src="cherries.mp4" type="video/mp4">
-				</video>
-			</div>
-		</div>
-		-->
-
-<!--
 		<div id='products'>
 			<ContentCard v-for="product in products"
 				v-bind:product="product"
-				v-bind:key="product.id"/>
+				v-bind:key="product.id"
+			/>
 		</div>
 	</div>
-	-->
 </template>
 
 <script>
 	import { mapActions } from 'vuex'	
 	import { productGetter } from './product_getter.js'
-//	import ContentCard from './components/ContentCard'
+	import ContentCard from './components/ContentCard'
 
 	export default {
 		name: 'HomePage',
 		components: {
-			//ContentCard,
+			ContentCard,
 		},
 		computed: {
 			loadingProduct () {
@@ -76,114 +59,46 @@
 </script>
 
 <style>
-
 	#products {
-		margin-top: 100px;
-	}
-
-	#coffee {
-		margin-top: 100px;
-		width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	.blur {
-		filter: blur(5px);
-		transition: filter 2s;
-	}
-
-	.hero {
-		width: 100%;
-		min-width: 300px;
-		overflow: hidden;
 		display: flex;
 		flex-direction: row;
-	}
-
-	.hero-background {
-		display: flex;
-		min-width: 100%;
-		min-height: 100%;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
 	}
 
 	.hero-block {
-		margin-left: 100px;
-		margin-right: auto;
-		margin-top: 20%;
-		color: #dddddd;
-		text-align: left;
-		display: flex;
-		flex-direction: row;
-		position: absolute;
-		line-height: 2;
-		z-index: 1;
-	}
-
-	.hero-block button {
-		font-family: serif;
-		font-size: 1.5em;
-		width: 468px;
-		height: 50px;
-		border: 3px solid #ddd;
-		color: #ddd;
-		background-color: rgba(0, 0, 0, 0);
-		text-decoration: none;
-	}
-
-	.hero-block button:hover {
-		background-color: #ddd;
-		color: black;
-	}
-
-	@media only screen and (max-width: 850px) {
-		.hero {
-			flex-direction: column;
-		}
-
-		.hero-block {
-			margin: 0 100px 0 100px;
-			color: #222;
-		}
-
-		.hero-block button {
-			border: 3px solid #222;
-			color: #222
-		}
-	}
-
-	.video-wrapper {
-		width: 100%;
-		max-height: 800px;
-		position: relative;
-	}
-
-	.video-transparency {
-		background-color: rgba(25, 15, 0, 0.5);
-		position: absolute;
-		width: 100%;
-		height: 100%;
-	}
-
-	@media only screen and (max-width: 851px) {
-		.video-transparency {
-			display: none;
-		}
-	}
-
-	@media only screen and (max-width: 850px) {
-		.hero-block {
-			position: static;
-			order: 2;
-		}
-	}
-	
-	.hero-block h1 {
-		font-size: 1.5em;
+		color: #DDD;
+		font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 	}
 
 	.hero-block p {
-		width: 50%;
+		font-size: 1.5em;
 	}
 
+	.hero-block a {
+		background: none;
+		border: 2px solid #DDD;
+		border-radius: 10px;
+		color: #DDD;
+		font-size: 2em;
+		padding: 30px;
+		transition: 0.3s;
+		text-decoration: none;
+	}
+
+	.hero-block a:hover {
+		background-color: #DDD;
+		color: #000;
+		cursor: pointer;
+	}
+
+	.hero-block a:active {
+		background-color: white;
+	}
+
+	.hero {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+	}
 </style>

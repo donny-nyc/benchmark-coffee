@@ -30,7 +30,7 @@ export default {
 
 <style>
 body {
-	background-color: #5a5dff;
+	background: linear-gradient(-90deg, #5a5dff 0%, #0a0d5f 100%);
 }
 
 #app {
